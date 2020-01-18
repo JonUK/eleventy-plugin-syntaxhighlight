@@ -21,8 +21,17 @@ module.exports = function(options = {}) {
       html = Prism.highlight(str, PrismLoader(language), language);
     }
 
+    const hasSecondPart = split.length > 0;
+    const secondPartForClassName = hasSecondPart && split[0].startsWith('class');
+    const additionalClassName = secondPartForClassName
+      ? ' ' + split[0].split(':')[1] // Add a space before to separate existing language class name
+      : null;
+
+
     let hasHighlightNumbers = split.length > 0;
     let highlights = new HighlightLinesGroup(split.join("/"), "/");
+
+
     let lines = html.split("\n").slice(0, -1); // The last line is empty.
 
     lines = lines.map(function(line, j) {
@@ -33,6 +42,6 @@ module.exports = function(options = {}) {
       return line;
     });
 
-    return `<pre class="language-${language}"><code class="language-${language}">${lines.join("<br>")}</code></pre>`;
+    return `<pre class="language-${language}${additionalClassName}"><code class="language-${language}${additionalClassName}">${lines.join("<br>")}</code></pre>`;
   };
 };

@@ -14,6 +14,12 @@
 .highlight-line:not(:last-child) {
   min-width: 100%;
 }
+
 .highlight-line .highlight-line:not(:last-child) {
   min-width: 0;
+}
+
+/* Example class for when additional an class has been added */
+pre.error {
+  border: 5px solid red;
 }

@@ -52,5 +52,13 @@ let multilineString = `
 `;
 ```
 
+```js/class:error
+let multilineString = `
+  this is the first line
+  this is the middle line
+  this is the last line
+`;
+```
+
   </body>
 </html>
